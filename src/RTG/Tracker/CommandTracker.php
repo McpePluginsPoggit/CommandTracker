@@ -1,12 +1,9 @@
 <?php
-
 /*
  * All rights reserved RTGNetworkkk
  * Please give credits :)
 */
-
 namespace RTG\Tracker;
-
 use pocketmine\utils\Config;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -15,7 +12,6 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-
 class CommandTracker extends PluginBase implements Listener {
 	
 	public function onEnable() {
@@ -34,7 +30,7 @@ class CommandTracker extends PluginBase implements Listener {
 		$time = date("m-d-Y H:i:s", $r);
 			
 			if($p->isOp() or $p->hasPermission("system.track")) {
-				if($m === "/kick" or $m === "/ban" or $m === "/pardon" or $m === "/me") {
+				if($m === "/kick" or $m === "/setuperm" or $m === "/setgroup" or $m === "/setgperm" or $m === "/defgroup" or $m === "/addparent" or $m === "/buycraft" or $m === "/op" or $m === "/ban" or $m === "/pardon") {
 					$this->logs = new Config($this->getDataFolder() . "players/" . strtolower($p->getName()) . ".yml", Config::YAML);
 					$this->logs->set($time, "Player: " . $n . " | Command: " . $msg);
 					$this->logs->save();
@@ -46,7 +42,7 @@ class CommandTracker extends PluginBase implements Listener {
 		switch(strtolower($cmd->getName())) {
 			
 			case "check":
-				$sender->sendMessage("CommandTracker is running perfectly!");
+				$sender->sendMessage("Tracker is running perfectly!");
 				return true;
 			break;
 			
